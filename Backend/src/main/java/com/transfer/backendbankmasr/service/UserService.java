@@ -1,33 +1,54 @@
 package com.transfer.backendbankmasr.service;
 
-import com.transfer.backendbankmasr.model.User;
+import com.transfer.backendbankmasr.dto.CreateUserReq;
+import com.transfer.backendbankmasr.dto.CreateUserResp;
+import com.transfer.backendbankmasr.entity.User;
 import com.transfer.backendbankmasr.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
+
     @Autowired
     private UserRepository userRepository;
-    public User CreateUser(User user) {
-        return userRepository.save(user);
+
+    public CreateUserResp createUser(CreateUserReq req) {
+        User user = new User();
+        user.setUsername(req.getUsername());
+        user.setEmail(req.getEmail());
+        user.setPassword(req.getPassword());
+        user.setDateOfBirth(req.getDateOfBirth());
+        User savedUser = userRepository.save(user);
+        return new CreateUserResp(savedUser.getUserId(), savedUser.getUsername(), savedUser.getEmail());
     }
-    public User getUserById(Long userId) {
-        return userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+
+    public CreateUserResp getUserById(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        return new CreateUserResp(user.getUserId(), user.getUsername(), user.getEmail());
     }
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+
+    public List<CreateUserResp> getAllUsers() {
+        return userRepository.findAll().stream()
+                .map(user -> new CreateUserResp(user.getUserId(), user.getUsername(), user.getEmail()))
+                .collect(Collectors.toList());
     }
-    public User updateUser(Long userId, User updatedUser) {
-        return userRepository.findById(userId).map(user->{
-            user.setUsername(updatedUser.getUsername());
-            user.setEmail(updatedUser.getEmail());
-            return userRepository.save(user);
+
+    public CreateUserResp updateUser(Long userId, CreateUserReq req) {
+        return userRepository.findById(userId).map(user -> {
+            user.setUsername(req.getUsername());
+            user.setEmail(req.getEmail());
+            user.setPassword(req.getPassword());
+            user.setDateOfBirth(req.getDateOfBirth());
+            User updatedUser = userRepository.save(user);
+            return new CreateUserResp(updatedUser.getUserId(), updatedUser.getUsername(), updatedUser.getEmail());
         }).orElseThrow(() -> new RuntimeException("User not found"));
     }
+
     public void deleteUserById(Long userId) {
         if (userRepository.existsById(userId)) {
             userRepository.deleteById(userId);

@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Money_Transfer_Application-.iml" filepath="$PROJECT_DIR$/.idea/Money_Transfer_Application-.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Backend/src/main/main.iml" filepath="$PROJECT_DIR$/Backend/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Backend/src/test/test.iml" filepath="$PROJECT_DIR$/Backend/src/test/test.iml" />
     </modules>
   </component>
 </project>

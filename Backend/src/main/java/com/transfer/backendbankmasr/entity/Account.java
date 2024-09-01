@@ -1,4 +1,4 @@
-package com.transfer.backendbankmasr.model;
+package com.transfer.backendbankmasr.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
