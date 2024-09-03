@@ -3,15 +3,14 @@ package com.transfer.backendbankmasr.dto;
 import com.transfer.backendbankmasr.enums.AccountCurrency;
 import com.transfer.backendbankmasr.enums.AccountStatus;
 import com.transfer.backendbankmasr.enums.AccountType;
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Builder
 @Data
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class AccountDTO {
     private Long id;
 

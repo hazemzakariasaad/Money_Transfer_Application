@@ -1,6 +1,7 @@
 package com.transfer.backendbankmasr.entity;
 
 import com.transfer.backendbankmasr.dto.UserDTO;
+import com.transfer.backendbankmasr.enums.Country;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -48,6 +49,10 @@ public class User {
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
+
+    @Enumerated(EnumType.STRING)
+    private Country country;
+
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
@@ -63,6 +68,7 @@ public class User {
                 .createdAt(this.createdAt)
                 .updatedAt(this.updatedAt)
                 .accounts(this.accounts)
+                .country(this.country)
                 .build();
     }
     @PrePersist
@@ -73,6 +79,7 @@ public class User {
 
     @PreUpdate
     protected void onUpdate() {
+
         this.updatedAt = LocalDateTime.now();
     }
 }

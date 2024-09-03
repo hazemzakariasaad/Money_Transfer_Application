@@ -1,6 +1,7 @@
 package com.transfer.backendbankmasr.dto;
 
 import com.transfer.backendbankmasr.entity.Account;
+import com.transfer.backendbankmasr.enums.Country;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -20,6 +21,8 @@ public class UserDTO {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+    private Country country;
 
     private Set<Account> accounts;
 }

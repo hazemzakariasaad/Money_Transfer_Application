@@ -27,9 +27,8 @@ public class AuthService implements IAuthService {
     public RegisterUserResponse register(RegisterUserRequest userRequest) {
         if(userRepository.existsByEmail(userRequest.getEmail())) {
             throw new EmailAlreadyUsedException("the email" + userRequest.getEmail() + " is already in use");
-
         }
-        if (userRepository.existsByName(userRequest.getUsername())) {
+        if (userRepository.existsByUsername(userRequest.getUsername())) {
             throw new NameAlreadyUsedException("name already in use");
         }
         if (!userRequest.getPassword().equals(userRequest.getConfirmPassword())) {
@@ -39,6 +38,7 @@ public class AuthService implements IAuthService {
                 .username(userRequest.getUsername())
                 .email(userRequest.getEmail())
                 .password(passwordEncoder.encode(userRequest.getPassword()))
+                .country(userRequest.getCountry())
                 .build();
 
         Account account = Account.builder()

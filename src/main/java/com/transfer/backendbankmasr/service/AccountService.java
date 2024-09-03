@@ -8,6 +8,7 @@ import com.transfer.backendbankmasr.entity.User;
 import com.transfer.backendbankmasr.exception.custom.ResourceNotFoundException;
 import com.transfer.backendbankmasr.repository.AccountRepository;
 import com.transfer.backendbankmasr.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ public class AccountService implements IAccountService {
     private final AccountRepository accountRepository;
     private final UserRepository userRepository;
 
+    @Transactional
     @Override
     public AccountDTO createAccount(CreateAccountDTO accountDTO) throws ResourceNotFoundException {
         User user = this.userRepository.findById(accountDTO.getUserId()).orElseThrow(
@@ -40,6 +42,8 @@ public class AccountService implements IAccountService {
         return savedAccount.toDTO();
     }
 
+
+    @Transactional
     @Override
     public AccountDTO getAccountById(Long accountId) throws ResourceNotFoundException {
         Account account = this.accountRepository.findById(accountId).orElseThrow(

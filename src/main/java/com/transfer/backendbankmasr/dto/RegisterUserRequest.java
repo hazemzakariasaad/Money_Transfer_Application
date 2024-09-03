@@ -1,5 +1,7 @@
 package com.transfer.backendbankmasr.dto;
 
+import com.transfer.backendbankmasr.enums.Country;
+import jakarta.persistence.Enumerated;
 import lombok.*;
 
 import javax.validation.constraints.Email;
@@ -19,6 +21,9 @@ public class RegisterUserRequest {
     @Email(message = "Invalid email format")
     @NotEmpty(message = "Email cannot be empty")
     private String email;
+
+    @Enumerated()
+    private Country country;
 
     @NotEmpty(message = "Password cannot be empty")
     private String password;

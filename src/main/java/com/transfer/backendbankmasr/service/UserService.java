@@ -54,7 +54,7 @@ public class UserService implements IUserService {
                 throw new EmailAlreadyUsedException("the email" + req.getEmail() + " is already in use");
 
             }
-            if (userRepository.existsByName(req.getUsername())) {
+            if (userRepository.existsByUsername(req.getUsername())) {
                 throw new NameAlreadyUsedException(req.getUsername() +"name already in use");
             }
             user.setUsername(req.getUsername());

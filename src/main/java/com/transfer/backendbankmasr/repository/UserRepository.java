@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<User, Long> {
     /// interface inherits several methods such as save(), findAll(), findById(), delete()
     boolean existsByEmail(String email);
-    boolean existsByName(String email);
+    boolean existsByUsername(String username);  // Changed from existsByName
+
 }
