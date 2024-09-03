@@ -1,12 +1,14 @@
 package com.transfer.backendbankmasr.controller;
 
-import com.transfer.backendbankmasr.dto.CreateUserReq;
-import com.transfer.backendbankmasr.dto.CreateUserResp;
+import com.transfer.backendbankmasr.dto.*;
 import com.transfer.backendbankmasr.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -16,21 +18,15 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping
-    public ResponseEntity<CreateUserResp> createUser(@RequestBody CreateUserReq req) {
-        CreateUserResp createdUser = userService.createUser(req);
-        return ResponseEntity.ok(createdUser);
-    }
-
     @GetMapping("/{id}")
-    public ResponseEntity<CreateUserResp> getUserById(@PathVariable Long id) {
-        CreateUserResp user = userService.getUserById(id);
-        return ResponseEntity.ok(user);
+    public UserDTO getUserById(@PathVariable Long id) {
+        UserDTO user = userService.getUserById(id);
+        return user;
     }
 
     @GetMapping("")
     public ResponseEntity<?> getAllUsers() {
-        List<CreateUserResp> users = userService.getAllUsers();
+        List<UserDTO> users = userService.getAllUsers();
         if (users.isEmpty()) {
             return ResponseEntity.ok("No users found");
         }
@@ -38,14 +34,26 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CreateUserResp> updateUser(@PathVariable Long id, @RequestBody CreateUserReq req) {
-        CreateUserResp updatedUser = userService.updateUser(id, req);
+    public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody @Valid UpdateUserReq req) {
+        UserDTO updatedUser = userService.updateUser(id, req);
         return ResponseEntity.ok(updatedUser);
     }
 
+    @Operation(summary = "Delete a user", description = "Deletes a user by ID")
+    @ApiResponse(responseCode = "200", description = "User deleted successfully")
+    @ApiResponse(responseCode = "404", description = "User not found")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Long id) {
         userService.deleteUserById(id);
         return ResponseEntity.ok("User deleted successfully");
+    }
+
+    @Operation(summary = "change password for user", description = "change password for user by ID")
+    @ApiResponse(responseCode = "200", description = "User password updated successfully")
+    @ApiResponse(responseCode = "404", description = "User not found")
+    @PutMapping("/{id}/changepassword")
+    public ResponseEntity<?>changePassword(@PathVariable Long id,@RequestBody @Valid ChangePasswordRequest request){
+        userService.changePassword(id,request);
+        return ResponseEntity.ok().build();
     }
 }

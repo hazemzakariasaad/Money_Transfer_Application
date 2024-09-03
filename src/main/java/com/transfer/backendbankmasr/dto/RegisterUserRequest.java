@@ -1,15 +1,17 @@
 package com.transfer.backendbankmasr.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 
-@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Setter
-public class CreateUserReq {
+@Getter
+public class RegisterUserRequest {
 
     @NotEmpty(message = "Username cannot be empty")
     private String username;
@@ -20,6 +22,9 @@ public class CreateUserReq {
 
     @NotEmpty(message = "Password cannot be empty")
     private String password;
+
+    @NotEmpty(message = "confirmPassword cannot be empty")
+    private String confirmPassword;
 
     @NotEmpty(message = "Date of birth cannot be empty")
     private LocalDate dateOfBirth;
