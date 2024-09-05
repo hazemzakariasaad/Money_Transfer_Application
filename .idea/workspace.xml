@@ -5,40 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7480b14c-10fe-4a19-9bf9-c07c429d591e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/config/RedisConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/config/SecurityConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/exception/custom/AuthenticationFailureException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/exception/custom/IncorrectCredentialsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/security/JwtAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/security/JwtService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/service/UserDetailsImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/service/UserDetailsServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/controller/FavouriteRecepientsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/dto/CreateFavoriteRecipientReq.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/dto/CreateFavoriteRecipientResp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/entity/FavoriteRecipient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/repository/FavoriteRecipientRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/service/FavoriteRecipientService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/BackendBankmasrApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/BackendBankmasrApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/config/JwtAuthenticationFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/config/JwtService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/config/OpenAPI30Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/config/ApplicationConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/dto/ChangePasswordRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/dto/ChangePasswordRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/dto/CreateAccountDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/dto/CreateAccountDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/dto/LoginRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/dto/LoginRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/dto/LoginResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/dto/LoginResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/dto/UpdateAccountDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/dto/UpdateAccountDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/dto/UpdateUserReq.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/dto/UpdateUserReq.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/dto/UserDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/entity/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/entity/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/service/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/service/IAuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/service/IAuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/service/IUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/service/IUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/transfer/backendbankmasr/config/SecurityConfiguration.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,14 +25,26 @@
       <list>
         <option value="Interface" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="Exception" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "KhaledBadr07"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/hazemzakariasaad/Money_Transfer_Application.git",
+    "accountId": "c4b78b63-2f23-4c31-83bb-e6edca14dbdd"
+  }
+}]]></component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -79,6 +66,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Maven.backendBankmasr [clean].executor": "Run",
     "Maven.backendBankmasr [install].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
@@ -89,7 +77,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Money_Transfer_Application-",
+    "last_opened_file_path": "C:/Users/khale/OneDrive/Desktop/bank masr train/project/Money_Transfer_Application/pom.xml",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -106,6 +94,12 @@
   <component name="RecentsManager">
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="com.transfer.backendbankmasr.security" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.transfer.backendbankmasr.service" />
+      <recent name="com.transfer.backendbankmasr.repository" />
+      <recent name="com.transfer.backendbankmasr.dto" />
+      <recent name="com.transfer.backendbankmasr.entity" />
     </key>
   </component>
   <component name="RunManager">
@@ -141,6 +135,7 @@
       <workItem from="1725504475162" duration="6005000" />
       <workItem from="1725512062333" duration="9380000" />
       <workItem from="1725547038957" duration="7274000" />
+      <workItem from="1725560951323" duration="4217000" />
     </task>
     <servers />
   </component>
