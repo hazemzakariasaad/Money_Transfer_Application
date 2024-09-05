@@ -24,5 +24,5 @@ public class UserDTO {
 
     private Country country;
 
-    private Set<Account> accounts;
+    private Set<AccountDTO> accounts;
 }

@@ -16,6 +16,4 @@ public class ChangePasswordRequest {
     @NotEmpty(message = "newPassword cannot be empty")
     private String newPassword;
 
-    @NotEmpty(message = "confirmPassword cannot be empty")
-    private String confirmationPassword;
 }

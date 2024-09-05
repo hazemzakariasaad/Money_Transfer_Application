@@ -1,4 +1,6 @@
 package com.transfer.backendbankmasr.entity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.transfer.backendbankmasr.dto.AccountDTO;
 import com.transfer.backendbankmasr.enums.AccountCurrency;
 import com.transfer.backendbankmasr.enums.AccountStatus;
@@ -48,7 +50,8 @@ public class Account {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonManagedReference
     @JoinColumn(name = "user_id")
     private User user;
 

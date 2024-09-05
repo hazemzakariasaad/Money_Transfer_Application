@@ -34,7 +34,6 @@ public class AccountService implements IAccountService {
                 .accountBalance(0.0)
                 .accountType(accountDTO.getAccountType())
                 .accountNumber(new SecureRandom().nextInt(1000000000) + "")
-                .accountName(accountDTO.getAccountName())
                 .currency(accountDTO.getCurrency())
                 .user(user).build();
         Account savedAccount = this.accountRepository.save(account);
@@ -54,11 +53,22 @@ public class AccountService implements IAccountService {
 
     @Override
     public AccountDTO updateAccount(Long accountId, UpdateAccountDTO accountDTO) {
-        return null;
+        Account account = this.accountRepository.findById(accountId).orElseThrow(()->
+                new ResourceNotFoundException("Account with id " + accountId + " not found"));
+        if (accountDTO.getAccountName() != null) {
+            account.setAccountName(accountDTO.getAccountName());
+        }
+
+        Account updatedAccount = accountRepository.save(account);
+        return updatedAccount.toDTO();
     }
 
     @Override
     public void deleteAccount(Long accountId) {
-
+        Account account = this.accountRepository.findById(accountId).orElseThrow(
+                () -> new ResourceNotFoundException("Account with id " + accountId + " not found")
+        );
+    accountRepository.delete(account);
     }
+
 }

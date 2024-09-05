@@ -7,15 +7,14 @@ import com.transfer.backendbankmasr.exception.custom.NameAlreadyUsedException;
 import com.transfer.backendbankmasr.exception.custom.PasswordMismatchException;
 import com.transfer.backendbankmasr.exception.custom.ResourceNotFoundException;
 import com.transfer.backendbankmasr.repository.UserRepository;
-import jakarta.persistence.EntityNotFoundException;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,10 +24,9 @@ public class UserService implements IUserService {
 
     @Autowired
     private UserRepository userRepository;
+
     @Autowired
     private final PasswordEncoder passwordEncoder;
-
-
 
 
     @Override
@@ -71,9 +69,6 @@ public class UserService implements IUserService {
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         if (!passwordEncoder.matches(request.getCurrentPassword(), user.getPassword())) {
             throw new PasswordMismatchException("Wrong password");
-        }
-        if (!request.getNewPassword().equals(request.getConfirmationPassword())) {
-            throw new PasswordMismatchException("Password are not the same");
         }
         user.setPassword(passwordEncoder.encode(request.getNewPassword()));
         userRepository.save(user);

@@ -1,8 +1,5 @@
 package com.transfer.backendbankmasr.exception;
-import com.transfer.backendbankmasr.exception.custom.EmailAlreadyUsedException;
-import com.transfer.backendbankmasr.exception.custom.NameAlreadyUsedException;
-import com.transfer.backendbankmasr.exception.custom.PasswordMismatchException;
-import com.transfer.backendbankmasr.exception.custom.ResourceNotFoundException;
+import com.transfer.backendbankmasr.exception.custom.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -37,6 +34,14 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<String> handleResourceNotFound(ResourceNotFoundException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(AuthenticationFailureException.class)
+    public ResponseEntity<String> handleAuthenticationFailure(AuthenticationFailureException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
+    }
+    @ExceptionHandler(IncorrectCredentialsException.class)
+    public ResponseEntity<String> handleIncorrectCredentials(IncorrectCredentialsException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 }
 

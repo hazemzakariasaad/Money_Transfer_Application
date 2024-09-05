@@ -1,14 +1,19 @@
 package com.transfer.backendbankmasr.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.transfer.backendbankmasr.dto.UserDTO;
 import com.transfer.backendbankmasr.enums.Country;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -23,7 +28,7 @@ import javax.validation.constraints.NotEmpty;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,7 +54,7 @@ public class User {
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
-
+    @NotEmpty(message = "Country cannot be empty")
     @Enumerated(EnumType.STRING)
     private Country country;
 
@@ -57,7 +62,9 @@ public class User {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Builder.Default
+    @JsonManagedReference
     private Set<Account> accounts = new HashSet<>();
 
     public UserDTO toDTO() {
@@ -67,7 +74,8 @@ public class User {
                 .email(this.email)
                 .createdAt(this.createdAt)
                 .updatedAt(this.updatedAt)
-                .accounts(this.accounts)
+                .accounts(this.accounts.stream().map(Account::toDTO)
+                .collect(Collectors.toSet()))
                 .country(this.country)
                 .build();
     }
@@ -82,4 +90,5 @@ public class User {
 
         this.updatedAt = LocalDateTime.now();
     }
+
 }

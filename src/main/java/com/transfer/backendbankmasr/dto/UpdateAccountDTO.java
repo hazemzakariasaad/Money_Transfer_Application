@@ -13,5 +13,4 @@ public class UpdateAccountDTO {
 
     private String accountName;
 
-    private String accountDescription;
 }

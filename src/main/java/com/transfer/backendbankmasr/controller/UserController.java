@@ -12,18 +12,25 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
+    @Operation(summary = "Get user By ID", description = "Get user")
+    @ApiResponse(responseCode = "200", description = "User Get successfully")
+    @ApiResponse(responseCode = "404", description = "User not found")
     @GetMapping("/{id}")
     public UserDTO getUserById(@PathVariable Long id) {
         UserDTO user = userService.getUserById(id);
         return user;
     }
 
+
+    @Operation(summary = "Get All user", description = "Get All user")
+    @ApiResponse(responseCode = "200", description = "Users Get successfully")
+    @ApiResponse(responseCode = "404", description = "Users not found")
     @GetMapping("")
     public ResponseEntity<?> getAllUsers() {
         List<UserDTO> users = userService.getAllUsers();
@@ -33,11 +40,16 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
+
+    @Operation(summary = "Update user", description = "Update user by ID")
+    @ApiResponse(responseCode = "200", description = "User Updated successfully")
+    @ApiResponse(responseCode = "404", description = "User not found")
     @PutMapping("/{id}")
     public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody @Valid UpdateUserReq req) {
         UserDTO updatedUser = userService.updateUser(id, req);
         return ResponseEntity.ok(updatedUser);
     }
+
 
     @Operation(summary = "Delete a user", description = "Deletes a user by ID")
     @ApiResponse(responseCode = "200", description = "User deleted successfully")
@@ -47,6 +59,7 @@ public class UserController {
         userService.deleteUserById(id);
         return ResponseEntity.ok("User deleted successfully");
     }
+
 
     @Operation(summary = "change password for user", description = "change password for user by ID")
     @ApiResponse(responseCode = "200", description = "User password updated successfully")

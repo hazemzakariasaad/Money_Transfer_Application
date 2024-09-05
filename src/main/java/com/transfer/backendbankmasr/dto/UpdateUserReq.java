@@ -1,5 +1,6 @@
 package com.transfer.backendbankmasr.dto;
 
+import com.transfer.backendbankmasr.enums.Country;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
@@ -20,5 +21,8 @@ public class UpdateUserReq {
     @Email(message = "Invalid email format")
     @NotBlank(message = "Email cannot be empty")
     private String email;
+
+    @NotBlank
+    private Country country;
 
 }

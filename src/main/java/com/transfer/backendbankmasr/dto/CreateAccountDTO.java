@@ -4,6 +4,7 @@ import com.transfer.backendbankmasr.enums.AccountCurrency;
 import com.transfer.backendbankmasr.enums.AccountType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,5 +30,8 @@ public class CreateAccountDTO {
 
     @NotNull
     private Long userId;
+
+    @PositiveOrZero(message = "Account balance must be zero or positive")
+    private double accountBalance;
 
 }
