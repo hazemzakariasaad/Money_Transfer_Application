@@ -31,7 +31,7 @@ import io.swagger.v3.oas.annotations.security.SecurityScheme;
                 ),
                 @Server(
                         description = "PROD ENV",
-                        url = "https://aliboucoding.com/course"
+                        url = "https://moneytransferapplication-production.up.railway.app"
                 )
         },
         security = {
