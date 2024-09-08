@@ -27,7 +27,8 @@ public class AccountService implements IAccountService {
         UserEntity user = this.userRepository.findById(accountDTO.getUserId()).orElseThrow(
                 () -> new ResourceNotFoundException("User with id " + accountDTO.getUserId() + " not found")
         );
-
+        //add validation for balance as when create account balance check if this balance in first accont or not
+        // then add this
         AccountEntity account = AccountEntity.builder()
                 .accountName(accountDTO.getAccountName())
                 .accountBalance(0.0)
@@ -36,11 +37,10 @@ public class AccountService implements IAccountService {
                 .currency(accountDTO.getCurrency())
                 .user(user).build();
         AccountEntity savedAccount = this.accountRepository.save(account);
-
         return savedAccount.toDTO();
     }
 
-
+    //get account of current user by userID
     @Transactional
     @Override
     public AccountDTO getAccountById(Long accountId) throws ResourceNotFoundException {
@@ -49,6 +49,8 @@ public class AccountService implements IAccountService {
         );
         return account.toDTO();
     }
+
+    // add update or delete account by userId
 
     @Override
     public AccountDTO updateAccount(Long accountId, UpdateAccountDTO accountDTO) {

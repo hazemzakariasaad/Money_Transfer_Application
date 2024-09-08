@@ -42,6 +42,7 @@ public class FavoriteRecipientService {
     }
 
     public void removeFavoriteRecipient(Long favoriteId) {
+
         favoriteRecipientRepository.deleteById(favoriteId);
     }
 }

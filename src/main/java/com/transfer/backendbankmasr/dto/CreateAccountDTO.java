@@ -25,8 +25,6 @@ public class CreateAccountDTO {
     @NotBlank
     private String accountName;
 
-    @NotBlank
-    private String accountDescription;
 
     @NotNull
     private Long userId;
