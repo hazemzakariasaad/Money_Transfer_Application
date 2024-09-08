@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 public class LoginResponseDTO {
 
 private String token;
+private long id ;
 private String username;
 private String message;
 private HttpStatus status;

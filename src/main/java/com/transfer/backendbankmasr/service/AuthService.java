@@ -14,6 +14,8 @@ import com.transfer.backendbankmasr.repository.UserRepository;
 import com.transfer.backendbankmasr.security.JwtService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -26,6 +28,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
+import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 @Service
 @RequiredArgsConstructor
@@ -39,7 +43,10 @@ public class AuthService implements IAuthService {
 
     private final AuthenticationManager authenticationManager;
 
-@Transactional
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
+
+    @Transactional
     public RegisterUserResponse register( RegisterUserRequest userRequest) {
         if(userRepository.existsByEmail(userRequest.getEmail())) {
             throw new EmailAlreadyUsedException("the email" + userRequest.getEmail() + " is already in use");
@@ -88,14 +95,15 @@ public class AuthService implements IAuthService {
             );
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            UserDetails userDetails = (UserDetailsImpl) authentication.getPrincipal();
+            UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
             String jwt = jwtService.generateToken(userDetails);
-
+            Optional<UserEntity> user=userRepository.findUserByEmail(userDetails.getUsername());
             return LoginResponseDTO.builder()
                     .token(jwt)
                     .message("Login Successful")
                     .status(HttpStatus.ACCEPTED)
                     .username(userDetails.getUsername())
+                    .id(user.get().getUserId())
                     .build();
         } catch (BadCredentialsException e) {
             throw new IncorrectCredentialsException("Incorrect email or password");

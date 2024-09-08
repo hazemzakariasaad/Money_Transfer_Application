@@ -32,7 +32,6 @@ public class UserDetailsImpl implements UserDetails {
     public String getUsername() {
         return this.email;
     }
-
     @Override
     public boolean isAccountNonExpired() {
         return true;
