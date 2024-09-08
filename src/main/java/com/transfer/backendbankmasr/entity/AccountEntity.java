@@ -1,5 +1,4 @@
 package com.transfer.backendbankmasr.entity;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.transfer.backendbankmasr.dto.AccountDTO;
 import com.transfer.backendbankmasr.enums.AccountCurrency;
@@ -10,7 +9,6 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -21,7 +19,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Account {
+public class AccountEntity {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long accountId;
@@ -53,17 +51,17 @@ public class Account {
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonManagedReference
     @JoinColumn(name = "user_id")
-    private User user;
+    private UserEntity user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_account_id")
-    private Account parentAccount;
+    private AccountEntity parentAccount;
     //many accounts to one parent
 
 
     @OneToMany(mappedBy = "parentAccount", cascade = CascadeType.ALL)
     // relation between current entity and another entity .
-    private List<Account> subAccounts;
+    private List<AccountEntity> subAccounts;
 
  public AccountDTO toDTO() {
   return AccountDTO.builder()

@@ -1,23 +1,23 @@
 package com.transfer.backendbankmasr.controller;
 
-import com.transfer.backendbankmasr.dto.TransactionHistoryResp;
+import com.transfer.backendbankmasr.dto.TransactionDTO;
+import com.transfer.backendbankmasr.service.TransactionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Pageable; // Correct import for Pageable
 
-import java.util.Arrays;
-import java.util.List;
 
 @RestController
-@RequestMapping("/api/transactions")
+@RequestMapping("/transactions")
 public class TransactionHistoryController {
-
-    @GetMapping
-    public ResponseEntity<List<TransactionHistoryResp>> getTransactionHistory(@RequestParam Long userId) {
-        // Dummy transaction history data
-        TransactionHistoryResp dummyTransaction1 = new TransactionHistoryResp(1L, userId, "Transfer to User 2", 100.00, "2024-09-01");
-        TransactionHistoryResp dummyTransaction2 = new TransactionHistoryResp(2L, userId, "Received from User 3", 200.00, "2024-09-02");
-
-        List<TransactionHistoryResp> transactions = Arrays.asList(dummyTransaction1, dummyTransaction2);
-        return ResponseEntity.ok(transactions);
+    @Autowired
+    private TransactionService transactionService;
+//http://localhost:8080/transactions?userId=1&page=0&size=10&sort=date,desc
+    @GetMapping("")
+    public ResponseEntity<Page<TransactionDTO>> getTransactionHistory(@RequestParam Long userId,Pageable pageable) {
+        Page<TransactionDTO> transactions = transactionService.getTransactions(userId, pageable);
+            return ResponseEntity.ok(transactions);
     }
 }

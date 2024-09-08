@@ -1,18 +1,20 @@
 package com.transfer.backendbankmasr.controller;
 
-import com.transfer.backendbankmasr.dto.MoneyTransferReq;
-import com.transfer.backendbankmasr.dto.MoneyTransferResp;
+import com.transfer.backendbankmasr.dto.TransferRequestDTO;
+import com.transfer.backendbankmasr.dto.TransferResponseDTO;
+import com.transfer.backendbankmasr.service.TransactionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/transfer")
+@RequestMapping("/transfer")
 public class MoneyTransferController {
 
-    @PostMapping
-    public ResponseEntity<MoneyTransferResp> transferMoney(@RequestBody MoneyTransferReq req) {
-        // Dummy transfer response
-        MoneyTransferResp dummyResponse = new MoneyTransferResp(req.getSenderId(), req.getRecipientId(), req.getAmount(), "Transfer successful");
-        return ResponseEntity.ok(dummyResponse);
+    @Autowired
+    private TransactionService transService;
+    @PostMapping("")
+    public ResponseEntity<TransferResponseDTO> transferMoney(@RequestBody TransferRequestDTO req) {
+        return ResponseEntity.ok(transService.transferMoney(req));
     }
 }

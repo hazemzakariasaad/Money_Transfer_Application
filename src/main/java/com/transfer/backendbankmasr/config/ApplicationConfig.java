@@ -49,4 +49,5 @@ import io.swagger.v3.oas.annotations.security.SecurityScheme;
         in = SecuritySchemeIn.HEADER
 )
 public class ApplicationConfig {
+
 }

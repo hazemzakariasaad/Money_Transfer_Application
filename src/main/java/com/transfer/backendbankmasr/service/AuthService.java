@@ -4,15 +4,12 @@ import com.transfer.backendbankmasr.dto.LoginRequestDTO;
 import com.transfer.backendbankmasr.dto.LoginResponseDTO;
 import com.transfer.backendbankmasr.dto.RegisterUserRequest;
 import com.transfer.backendbankmasr.dto.RegisterUserResponse;
-import com.transfer.backendbankmasr.entity.Account;
-import com.transfer.backendbankmasr.entity.User;
+import com.transfer.backendbankmasr.entity.AccountEntity;
+import com.transfer.backendbankmasr.entity.UserEntity;
 import com.transfer.backendbankmasr.enums.AccountCurrency;
 import com.transfer.backendbankmasr.enums.AccountStatus;
 import com.transfer.backendbankmasr.enums.AccountType;
-import com.transfer.backendbankmasr.exception.custom.AuthenticationFailureException;
-import com.transfer.backendbankmasr.exception.custom.EmailAlreadyUsedException;
-import com.transfer.backendbankmasr.exception.custom.IncorrectCredentialsException;
-import com.transfer.backendbankmasr.exception.custom.NameAlreadyUsedException;
+import com.transfer.backendbankmasr.exception.custom.*;
 import com.transfer.backendbankmasr.repository.UserRepository;
 import com.transfer.backendbankmasr.security.JwtService;
 import jakarta.transaction.Transactional;
@@ -25,7 +22,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -52,9 +48,9 @@ public class AuthService implements IAuthService {
             throw new NameAlreadyUsedException("name already in use");
         }
         if (!userRequest.getPassword().equals(userRequest.getConfirmPassword())) {
-            throw new RuntimeException("Passwords do not match");
+            throw new PasswordMismatchException("Passwords do not match");
         }
-        User user = User.builder()
+        UserEntity user = UserEntity.builder()
                 .username(userRequest.getUsername())
                 .email(userRequest.getEmail())
                 .password(this.passwordEncoder.encode(userRequest.getPassword()))
@@ -62,7 +58,7 @@ public class AuthService implements IAuthService {
                 .dateOfBirth(userRequest.getDateOfBirth())
                 .build();
 
-        Account account = Account.builder()
+        AccountEntity account = AccountEntity.builder()
                 .accountBalance(0.0)
                 .accountType(AccountType.SAVING)
                 .accountName("Savings Account")
@@ -73,7 +69,7 @@ public class AuthService implements IAuthService {
                 .build();
 
         user.getAccounts().add(account);
-        User savedUser= userRepository.save(user);
+        UserEntity savedUser= userRepository.save(user);
 
         RegisterUserResponse response = new RegisterUserResponse();
         response.setUserId(savedUser.getUserId());

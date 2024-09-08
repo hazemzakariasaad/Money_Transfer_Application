@@ -2,9 +2,12 @@ package com.transfer.backendbankmasr.dto;
 
 import com.transfer.backendbankmasr.enums.Country;
 import jakarta.persistence.Enumerated;
+import jakarta.validation.Valid;
 import lombok.*;
 
-import javax.validation.constraints.Email;
+import jakarta.validation.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 
@@ -13,9 +16,11 @@ import java.time.LocalDate;
 @Builder
 @Setter
 @Getter
+@Valid
 public class RegisterUserRequest {
 
     @NotEmpty(message = "Username cannot be empty")
+    @Length(min=3)
     private String username;
 
     @Email(message = "Invalid email format")

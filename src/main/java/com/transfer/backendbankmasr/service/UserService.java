@@ -1,17 +1,14 @@
 package com.transfer.backendbankmasr.service;
 
 import com.transfer.backendbankmasr.dto.*;
-import com.transfer.backendbankmasr.entity.User;
+import com.transfer.backendbankmasr.entity.UserEntity;
 import com.transfer.backendbankmasr.exception.custom.EmailAlreadyUsedException;
 import com.transfer.backendbankmasr.exception.custom.NameAlreadyUsedException;
 import com.transfer.backendbankmasr.exception.custom.PasswordMismatchException;
 import com.transfer.backendbankmasr.exception.custom.ResourceNotFoundException;
 import com.transfer.backendbankmasr.repository.UserRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +28,7 @@ public class UserService implements IUserService {
 
     @Override
     public UserDTO getUserById(long userId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        UserEntity user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
         return user.toDTO();
     }
 
@@ -44,7 +41,7 @@ public class UserService implements IUserService {
 
     @Override
     public UserDTO updateUser(Long userId, UpdateUserReq req) {
-            User user = userRepository.findById(userId)
+            UserEntity user = userRepository.findById(userId)
                     .orElseThrow(() -> new ResourceNotFoundException("User not found"));  // Correctly handle the Optional<User>
 
 
@@ -65,7 +62,7 @@ public class UserService implements IUserService {
         }
 
     public void changePassword(Long userId,ChangePasswordRequest request) {
-        User user = userRepository.findById(userId)
+        UserEntity user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         if (!passwordEncoder.matches(request.getCurrentPassword(), user.getPassword())) {
             throw new PasswordMismatchException("Wrong password");

@@ -18,11 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -47,7 +42,7 @@ public class AuthController {
     @Operation(summary = "Register new User")
     @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = RegisterUserResponse.class), mediaType = "application/json")})
     @ApiResponse(responseCode = "400", content = {@Content(schema = @Schema(implementation = ErrorDetails.class), mediaType = "application/json")})
-    public RegisterUserResponse register(@RequestBody @Valid RegisterUserRequest user) {
+    public RegisterUserResponse register(@RequestBody @Valid  RegisterUserRequest user) {
         return this.authService.register(user);
 
     }

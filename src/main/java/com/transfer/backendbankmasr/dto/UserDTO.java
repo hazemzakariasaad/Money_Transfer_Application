@@ -1,6 +1,5 @@
 package com.transfer.backendbankmasr.dto;
 
-import com.transfer.backendbankmasr.entity.Account;
 import com.transfer.backendbankmasr.enums.Country;
 import lombok.*;
 

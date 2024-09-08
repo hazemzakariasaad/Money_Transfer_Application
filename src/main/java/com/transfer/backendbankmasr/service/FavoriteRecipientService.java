@@ -3,8 +3,8 @@ package com.transfer.backendbankmasr.service;
 
 import com.transfer.backendbankmasr.dto.CreateFavoriteRecipientReq;
 import com.transfer.backendbankmasr.dto.CreateFavoriteRecipientResp;
-import com.transfer.backendbankmasr.entity.FavoriteRecipient;
-import com.transfer.backendbankmasr.entity.User;
+import com.transfer.backendbankmasr.entity.FavoriteRecipientEntity;
+import com.transfer.backendbankmasr.entity.UserEntity;
 import com.transfer.backendbankmasr.repository.FavoriteRecipientRepository;
 import com.transfer.backendbankmasr.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +23,15 @@ public class FavoriteRecipientService {
     private UserRepository userRepository;
 
     public CreateFavoriteRecipientResp addFavoriteRecipient(CreateFavoriteRecipientReq req, Long userId) {
-        User user = userRepository.findById(userId)
+        UserEntity user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        FavoriteRecipient favoriteRecipient = new FavoriteRecipient();
+        FavoriteRecipientEntity favoriteRecipient = new FavoriteRecipientEntity();
         favoriteRecipient.setUser(user);
         favoriteRecipient.setRecipientName(req.getRecipientName());
         favoriteRecipient.setRecipientAccountNumber(req.getRecipientAccountNumber());
 
-        FavoriteRecipient savedRecipient = favoriteRecipientRepository.save(favoriteRecipient);
+        FavoriteRecipientEntity savedRecipient = favoriteRecipientRepository.save(favoriteRecipient);
         return new CreateFavoriteRecipientResp(savedRecipient.getId(), savedRecipient.getRecipientName(), savedRecipient.getRecipientAccountNumber());
     }
 
