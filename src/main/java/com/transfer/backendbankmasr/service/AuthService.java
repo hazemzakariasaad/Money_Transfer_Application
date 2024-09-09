@@ -102,7 +102,8 @@ public class AuthService implements IAuthService {
                     .token(jwt)
                     .message("Login Successful")
                     .status(HttpStatus.ACCEPTED)
-                    .username(userDetails.getUsername())
+                    .username(user.get().getUsername())
+                    .email(userDetails.getUsername())
                     .id(user.get().getUserId())
                     .build();
         } catch (BadCredentialsException e) {
