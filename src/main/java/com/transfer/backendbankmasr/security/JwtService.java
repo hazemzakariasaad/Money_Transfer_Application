@@ -11,6 +11,7 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import java.security.Key;
 import java.util.Date;
@@ -27,9 +28,13 @@ private String jwtSecret;
 @Value("${app.jwt.expiration.ms}")
 private int jwtExpirationMs;
 
+@Value("${app.jwt.refreshExpiration.ms}")
+    private int jwtRefreshExpirationMs;
 
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     public String extractUserEmail(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -83,6 +88,39 @@ private int jwtExpirationMs;
         // Retrieve the last token from Redis
         String lastToken = redisTemplate.opsForValue().get("token:" + username);
         return token.equals(lastToken) && !isTokenExpired(token);
+    }
+    private String generateRefreshToken(UserDetails userDetails) {
+        String refreshToken = Jwts.builder()
+                .setSubject(userDetails.getUsername())
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + jwtRefreshExpirationMs))
+                .signWith(getSignKey(), SignatureAlgorithm.HS256)
+                .compact();
+        redisTemplate.opsForValue().set("refresh_token:" + userDetails.getUsername(), refreshToken, jwtRefreshExpirationMs, TimeUnit.MILLISECONDS);
+        return refreshToken;
+    }
+    public String refreshAccessToken(String refreshToken) throws SecurityException {
+        // Verify the refresh token validity
+        String username = extractUserEmail(refreshToken);
+        if (username == null || !validateRefreshToken(refreshToken,userDetailsService.loadUserByUsername(username))) {
+            throw new SecurityException("Invalid or expired refresh token.");
+        }
+
+        // Generate a new access token
+        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        String newAccessToken = generateToken(new HashMap<>(), userDetails);
+
+        // Optionally, generate a new refresh token and save both to Redis
+        String newRefreshToken = generateRefreshToken(userDetails);
+        redisTemplate.opsForValue().set("access_token:" + username, newAccessToken, 30, TimeUnit.MINUTES);
+        redisTemplate.opsForValue().set("refresh_token:" + username, newRefreshToken, jwtRefreshExpirationMs, TimeUnit.MILLISECONDS);
+
+        return newAccessToken;
+    }
+    public boolean validateRefreshToken(String token, UserDetails userDetails) {
+        final String username = userDetails.getUsername();
+        String lastRefreshToken = redisTemplate.opsForValue().get("refresh_token:" + username);
+        return token.equals(lastRefreshToken) && !isTokenExpired(token);
     }
 
     private boolean isTokenExpired(String token) {

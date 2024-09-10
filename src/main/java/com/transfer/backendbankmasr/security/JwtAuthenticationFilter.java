@@ -41,24 +41,34 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                 if (jwtService.validateToken(jwt, userDetails)) {
                     // Extend the Redis session timeout each time the token is validated
-                    redisTemplate.expire("token:" + username, 30, TimeUnit.MINUTES);
+                    redisTemplate.expire("access_token:" + username, 30, TimeUnit.MINUTES);
 
                     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                             userDetails, null, userDetails.getAuthorities());
                     authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+                } else {
+                    // Check for a valid refresh token if the access token is no longer valid
+                    String refreshToken = redisTemplate.opsForValue().get("refresh_token:" + username);
+                    if (refreshToken != null && jwtService.validateRefreshToken(refreshToken, userDetails)) {
+                        // Generate new tokens
+                        String newAccessToken = jwtService.refreshAccessToken(refreshToken);
+                        // Update Redis with new access token
+                        redisTemplate.opsForValue().set("access_token:" + username, newAccessToken, 30, TimeUnit.MINUTES);
+                        // Reauthenticate with new token details
+                        authenticateUserWithNewToken(newAccessToken, userDetails, request);
+                    }
                 }
             }
         }
 
         filterChain.doFilter(request, response);
     }
-}
 
-//        private String parseJwt(HttpServletRequest request) {
-//            String headerAuth = request.getHeader("Authorization");
-//            if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
-//                return headerAuth.substring(7);
-//            }
-//            return null;
-//        }
+    private void authenticateUserWithNewToken(String newAccessToken, UserDetails userDetails, HttpServletRequest request) {
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                userDetails, null, userDetails.getAuthorities());
+        authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+    }
+}

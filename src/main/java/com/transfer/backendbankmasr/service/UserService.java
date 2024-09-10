@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -25,7 +26,13 @@ public class UserService implements IUserService {
     @Autowired
     private final PasswordEncoder passwordEncoder;
 
-
+    public Long getUserIdByUsername(String username) {
+        Optional<UserEntity> user = userRepository.findUserByEmail(username);
+        if (user == null) {
+            throw new RuntimeException("User not found with username: " + username);
+        }
+        return user.get().getUserId();
+    }
     @Override
     public UserDTO getUserById(long userId) {
         UserEntity user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
