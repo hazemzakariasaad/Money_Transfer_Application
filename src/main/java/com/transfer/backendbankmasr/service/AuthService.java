@@ -51,9 +51,6 @@ public class AuthService implements IAuthService {
         if(userRepository.existsByEmail(userRequest.getEmail())) {
             throw new EmailAlreadyUsedException("the email" + userRequest.getEmail() + " is already in use");
         }
-        if (userRepository.existsByUsername(userRequest.getUsername())) {
-            throw new NameAlreadyUsedException("name already in use");
-        }
         if (!userRequest.getPassword().equals(userRequest.getConfirmPassword())) {
             throw new PasswordMismatchException("Passwords do not match");
         }
