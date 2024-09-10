@@ -1,5 +1,7 @@
 package com.transfer.backendbankmasr.security;
 
+import com.transfer.backendbankmasr.entity.UserEntity;
+import com.transfer.backendbankmasr.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
 
 
@@ -17,6 +19,7 @@ import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
@@ -31,6 +34,8 @@ private int jwtExpirationMs;
 @Value("${app.jwt.refreshExpiration.ms}")
     private int jwtRefreshExpirationMs;
 
+    @Autowired
+    private UserRepository userRepository  ;
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
     @Autowired
@@ -72,6 +77,10 @@ private int jwtExpirationMs;
     // User can only enter from one device
     // Session be only for 30 min
     public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
+        Optional<UserEntity> user = userRepository.findUserByEmail(userDetails.getUsername());
+
+        Long userId = user.get().getUserId();
+        extraClaims.put("userId", userId);  // Add the user ID to the token claims
         String token = Jwts.builder()
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
@@ -90,7 +99,12 @@ private int jwtExpirationMs;
         return token.equals(lastToken) && !isTokenExpired(token);
     }
     private String generateRefreshToken(UserDetails userDetails) {
+        Optional<UserEntity> user = userRepository.findUserByEmail(userDetails.getUsername());
+        Long userId = user.get().getUserId();
+        Map<String, Object> extraClaims = new HashMap<>();
+        extraClaims.put("userId", userId);
         String refreshToken = Jwts.builder()
+                .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + jwtRefreshExpirationMs))
