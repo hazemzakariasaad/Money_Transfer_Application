@@ -1,6 +1,7 @@
 package com.transfer.backendbankmasr.dto;
 
 import lombok.*;
+import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 
@@ -16,5 +17,7 @@ public class RegisterUserResponse {
     private String email;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private String message;
+    private HttpStatus status;
 
 }

@@ -84,6 +84,8 @@ public class AuthService implements IAuthService {
         response.setEmail(savedUser.getEmail());
         response.setCreatedAt(savedUser.getCreatedAt());
         response.setUpdatedAt(savedUser.getUpdatedAt());
+        response.setMessage("Registered Successfully");
+        response.setStatus(HttpStatus.ACCEPTED);
         return response ;
     }
 
@@ -100,7 +102,7 @@ public class AuthService implements IAuthService {
             Optional<UserEntity> user=userRepository.findUserByEmail(userDetails.getUsername());
             return LoginResponseDTO.builder()
                     .token(jwt)
-                    .message("Login Successful")
+                    .message("Login Successfully")
                     .status(HttpStatus.ACCEPTED)
                     .username(user.get().getUsername())
                     .email(userDetails.getUsername())
