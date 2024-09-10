@@ -14,6 +14,6 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedOrigins("*")  // Allow specific origin(s) by adding hosts
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")  // Allow specific HTTP methods
                 .allowedHeaders("*")  // Allow all headers
-                .allowCredentials(true);  // Allow credentials (like cookies)
+                .allowCredentials(false);  // Allow credentials (like cookies)
     }
 }
