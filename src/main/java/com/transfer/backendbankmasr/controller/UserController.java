@@ -6,6 +6,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -22,7 +25,15 @@ public class UserController {
     @Operation(summary = "Get user By ID", description = "Get user")
     @ApiResponse(responseCode = "200", description = "User Get successfully")
     @ApiResponse(responseCode = "404", description = "User not found")
-    @GetMapping("/{id}")
+    @GetMapping("/id")
+    public UserDTO getUserById() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = ((UserDetails) authentication.getPrincipal()).getUsername();
+        Long userId = userService.getUserIdByUsername(username);
+        UserDTO user = userService.getUserById(userId);
+        return user;
+    }
+    @GetMapping("/test/{id}")
     public UserDTO getUserById(@PathVariable Long id) {
         UserDTO user = userService.getUserById(id);
         return user;
