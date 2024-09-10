@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable; // Correct import for Pageable
 
 
 @RestController
+@CrossOrigin
 @RequestMapping("/transactions")
 public class TransactionHistoryController {
     @Autowired
