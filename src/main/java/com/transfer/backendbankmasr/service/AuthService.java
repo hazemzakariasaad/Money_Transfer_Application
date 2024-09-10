@@ -46,6 +46,9 @@ public class AuthService implements IAuthService {
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
 
+    @Autowired
+    private EmailService emailService;
+
     @Transactional
     public RegisterUserResponse register( RegisterUserRequest userRequest) {
         if(userRepository.existsByEmail(userRequest.getEmail())) {
@@ -74,6 +77,11 @@ public class AuthService implements IAuthService {
 
         user.getAccounts().add(account);
         UserEntity savedUser= userRepository.save(user);
+
+        //email
+        String subject = "Registration Confirmation";
+        String body = "Dear " + savedUser.getUsername() + ",\n\nThank you for registering with our service.";
+        emailService.sendConfirmationEmail(savedUser.getEmail(), subject, body);
 
         RegisterUserResponse response = new RegisterUserResponse();
         response.setUserId(savedUser.getUserId());
