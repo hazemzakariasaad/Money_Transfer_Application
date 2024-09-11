@@ -66,7 +66,7 @@ public class AuthService implements IAuthService {
                 .build();
 
         AccountEntity account = AccountEntity.builder()
-                .accountBalance(0.0)
+                .accountBalance(100000)
                 .accountType(AccountType.SAVING)
                 .accountName("Savings Account")
                 .currency(AccountCurrency.EGP)
