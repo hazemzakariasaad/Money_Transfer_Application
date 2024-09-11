@@ -14,7 +14,7 @@ import org.springframework.data.domain.Pageable; // Correct import for Pageable
 
 
 @RestController
-
+@CrossOrigin
 @RequestMapping("/transactions")
 public class TransactionHistoryController {
     @Autowired
@@ -22,22 +22,22 @@ public class TransactionHistoryController {
     @Autowired
     private UserService userService;
 //http://localhost:8080/transactions?page=0&size=10&sort=date,desc
-@CrossOrigin
 @GetMapping("")
-    public Page<TransactionDTO>getTransactionHistory(Pageable pageable) {
+    public ResponseEntity<Page<TransactionDTO>>getTransactionHistory(Pageable pageable) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = ((UserDetails) authentication.getPrincipal()).getUsername();
         Long userId = userService.getUserIdByUsername(username);
         Page<TransactionDTO> transactions = transactionService.getTransactions(userId, pageable);
-            return transactions;
+            return ResponseEntity.ok(transactions);
     }
-    @CrossOrigin
     @GetMapping("/{id}")
-    public Page<TransactionDTO >getTransactionHistory(@PathVariable Long id,Pageable pageable) {
+    public ResponseEntity<Page<TransactionDTO>>getTransactionHistory(@PathVariable Long id,Pageable pageable) {
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //        String username = ((UserDetails) authentication.getPrincipal()).getUsername();
 //        Long userId = userService.getUserIdByUsername(username);
         Page<TransactionDTO> transactions = transactionService.getTransactions(id, pageable);
-        return transactions;
+        return ResponseEntity.ok()
+                .header("Content-Type", "application/json")
+                .body(transactions);
     }
 }
