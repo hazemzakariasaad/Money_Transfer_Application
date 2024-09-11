@@ -17,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
+import org.springframework.mail.MailException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -78,11 +79,15 @@ public class AuthService implements IAuthService {
         user.getAccounts().add(account);
         UserEntity savedUser= userRepository.save(user);
 
-        //email
-        String subject = "Registration Confirmation";
-        String body = "Dear " + savedUser.getUsername() + ",\n\nThank you for registering with our service.";
-        emailService.sendConfirmationEmail(savedUser.getEmail(), subject, body);
-
+        try {
+            String subject = "Registration Confirmation";
+            String body = "Dear " + savedUser.getUsername() + ",\n\nThank you for registering with our service.";
+            emailService.sendConfirmationEmail(savedUser.getEmail(), subject, body);
+        }catch (MailException e) {
+            // Handle the exception (e.g., log the error, alert the user)
+            System.err.println("Error sending email: " + e.getMessage());
+            // You can also log this using a logger or handle it in a more specific way
+        }
         RegisterUserResponse response = new RegisterUserResponse();
         response.setUserId(savedUser.getUserId());
         response.setUsername(savedUser.getUsername());
@@ -93,6 +98,7 @@ public class AuthService implements IAuthService {
         response.setStatus(HttpStatus.ACCEPTED);
         return response ;
     }
+//email
 
     @Override
     public LoginResponseDTO login(LoginRequestDTO loginRequestDTO) {
