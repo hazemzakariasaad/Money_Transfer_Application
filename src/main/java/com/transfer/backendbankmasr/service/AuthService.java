@@ -58,45 +58,50 @@ public class AuthService implements IAuthService {
         if (!userRequest.getPassword().equals(userRequest.getConfirmPassword())) {
             throw new PasswordMismatchException("Passwords do not match");
         }
-        UserEntity user = UserEntity.builder()
-                .username(userRequest.getUsername())
-                .email(userRequest.getEmail())
-                .password(this.passwordEncoder.encode(userRequest.getPassword()))
-                .country(userRequest.getCountry())
-                .dateOfBirth(userRequest.getDateOfBirth())
-                .build();
 
-        AccountEntity account = AccountEntity.builder()
-                .accountBalance(100000)
-                .accountType(AccountType.SAVING)
-                .accountName("Savings Account")
-                .currency(AccountCurrency.EGP)
-                .accountNumber(new SecureRandom().nextInt(1000000000) + "")
-                .accountStatus(AccountStatus.ACTIVE)
-                .user(user) // Link the account to the user
-                .build();
-
-        user.getAccounts().add(account);
-        UserEntity savedUser= userRepository.save(user);
 
         try {
+            UserEntity user = UserEntity.builder()
+                    .username(userRequest.getUsername())
+                    .email(userRequest.getEmail())
+                    .password(this.passwordEncoder.encode(userRequest.getPassword()))
+                    .country(userRequest.getCountry())
+                    .dateOfBirth(userRequest.getDateOfBirth())
+                    .build();
+
+            AccountEntity account = AccountEntity.builder()
+                    .accountBalance(100000)
+                    .accountType(AccountType.SAVING)
+                    .accountName("Savings Account")
+                    .currency(AccountCurrency.EGP)
+                    .accountNumber(new SecureRandom().nextInt(1000000000) + "")
+                    .accountStatus(AccountStatus.ACTIVE)
+                    .user(user) // Link the account to the user
+                    .build();
+
+            user.getAccounts().add(account);
+            UserEntity savedUser= userRepository.save(user);
             String subject = "Registration Confirmation";
             String body = "Dear " + savedUser.getUsername() + ",\n\nThank you for registering with our service.";
             emailService.sendConfirmationEmail(savedUser.getEmail(), subject, body);
+            RegisterUserResponse response = new RegisterUserResponse();
+            response.setUserId(savedUser.getUserId());
+            response.setUsername(savedUser.getUsername());
+            response.setEmail(savedUser.getEmail());
+            response.setCreatedAt(savedUser.getCreatedAt());
+            response.setUpdatedAt(savedUser.getUpdatedAt());
+            response.setMessage("Registered Successfully");
+            response.setStatus(HttpStatus.ACCEPTED);
+            return response ;
         }catch (MailException e) {
             // Handle the exception (e.g., log the error, alert the user)
-            System.err.println("Error sending email: " + e.getMessage());
+            System.err.println("no such email: " + e.getMessage());
             // You can also log this using a logger or handle it in a more specific way
+            throw new PasswordMismatchException("no such mail");
         }
-        RegisterUserResponse response = new RegisterUserResponse();
-        response.setUserId(savedUser.getUserId());
-        response.setUsername(savedUser.getUsername());
-        response.setEmail(savedUser.getEmail());
-        response.setCreatedAt(savedUser.getCreatedAt());
-        response.setUpdatedAt(savedUser.getUpdatedAt());
-        response.setMessage("Registered Successfully");
-        response.setStatus(HttpStatus.ACCEPTED);
-        return response ;
+
+
+
     }
 //email
 
