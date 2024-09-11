@@ -32,7 +32,7 @@ private String jwtSecret;
 private int jwtExpirationMs;
 
 @Value("${app.jwt.refreshExpiration.ms}")
-    private int jwtRefreshExpirationMs;
+private int jwtRefreshExpirationMs;
 
     @Autowired
     private UserRepository userRepository  ;
@@ -98,7 +98,7 @@ private int jwtExpirationMs;
         String lastToken = redisTemplate.opsForValue().get("token:" + username);
         return token.equals(lastToken) && !isTokenExpired(token);
     }
-    private String generateRefreshToken(UserDetails userDetails) {
+    public String generateRefreshToken(UserDetails userDetails) {
         Optional<UserEntity> user = userRepository.findUserByEmail(userDetails.getUsername());
         Long userId = user.get().getUserId();
         Map<String, Object> extraClaims = new HashMap<>();
@@ -126,7 +126,7 @@ private int jwtExpirationMs;
 
         // Optionally, generate a new refresh token and save both to Redis
         String newRefreshToken = generateRefreshToken(userDetails);
-        redisTemplate.opsForValue().set("access_token:" + username, newAccessToken, 30, TimeUnit.MINUTES);
+        redisTemplate.opsForValue().set("token:" + username, newAccessToken, 30, TimeUnit.MINUTES);
         redisTemplate.opsForValue().set("refresh_token:" + username, newRefreshToken, jwtRefreshExpirationMs, TimeUnit.MILLISECONDS);
 
         return newAccessToken;

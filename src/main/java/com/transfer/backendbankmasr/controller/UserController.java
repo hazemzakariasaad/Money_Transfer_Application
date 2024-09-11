@@ -1,5 +1,6 @@
 package com.transfer.backendbankmasr.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.transfer.backendbankmasr.dto.*;
 import com.transfer.backendbankmasr.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -10,12 +11,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import com.transfer.backendbankmasr.dto.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+//@CrossOrigin
 @RequestMapping("/users")
 public class UserController {
 
@@ -26,7 +29,7 @@ public class UserController {
     @ApiResponse(responseCode = "200", description = "User Get successfully")
     @ApiResponse(responseCode = "404", description = "User not found")
     @GetMapping("/id")
-    public UserDTO getUserById() {
+    public UserDTO getUserById() throws IOException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = ((UserDetails) authentication.getPrincipal()).getUsername();
         Long userId = userService.getUserIdByUsername(username);
@@ -34,9 +37,12 @@ public class UserController {
         return user;
     }
     @GetMapping("/test/{id}")
-    public UserDTO getUserById(@PathVariable Long id) {
+    public ResponseEntity<?> getUserById(@PathVariable Long id) throws IOException {
         UserDTO user = userService.getUserById(id);
-        return user;
+        if (user != null) {
+            return ResponseEntity.ok("No users found");
+        }
+        return ResponseEntity.ok(user);
     }
     ///edit here
 
@@ -57,8 +63,8 @@ public class UserController {
     @ApiResponse(responseCode = "200", description = "User Updated successfully")
     @ApiResponse(responseCode = "404", description = "User not found")
     @PutMapping("/{id}")
-    public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody @Valid UpdateUserReq req) {
-        UserDTO updatedUser = userService.updateUser(id, req);
+    public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody @Valid UpdateUserReq req) throws JsonProcessingException {
+        UserTokenDTO updatedUser = userService.updateUser(id, req);
         return ResponseEntity.ok(updatedUser);
     }
 
@@ -67,7 +73,7 @@ public class UserController {
     @ApiResponse(responseCode = "200", description = "User deleted successfully")
     @ApiResponse(responseCode = "404", description = "User not found")
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) throws JsonProcessingException {
         userService.deleteUserById(id);
         return ResponseEntity.ok("User deleted successfully");
     }

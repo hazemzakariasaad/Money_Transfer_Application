@@ -39,24 +39,33 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
-                if (jwtService.validateToken(jwt, userDetails)) {
-                    // Extend the Redis session timeout each time the token is validated
-                    redisTemplate.expire("access_token:" + username, 30, TimeUnit.MINUTES);
+                // Check if the access token exists in Redis
+                String storedAccessToken = redisTemplate.opsForValue().get("token:" + username);
+
+                if (storedAccessToken != null && storedAccessToken.equals(jwt)) {
+                    // Extend Redis session timeout for active users
+                    redisTemplate.expire("token:" + username, 30, TimeUnit.MINUTES);
+                    redisTemplate.expire("refresh_token:" + username, 30, TimeUnit.MINUTES);
 
                     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                             userDetails, null, userDetails.getAuthorities());
                     authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-                } else {
-                    // Check for a valid refresh token if the access token is no longer valid
+                } else if (storedAccessToken == null) {
+                    // Access token expired, check for valid refresh token
                     String refreshToken = redisTemplate.opsForValue().get("refresh_token:" + username);
                     if (refreshToken != null && jwtService.validateRefreshToken(refreshToken, userDetails)) {
-                        // Generate new tokens
+                        // Generate new access token for active user
                         String newAccessToken = jwtService.refreshAccessToken(refreshToken);
-                        // Update Redis with new access token
-                        redisTemplate.opsForValue().set("access_token:" + username, newAccessToken, 30, TimeUnit.MINUTES);
-                        // Reauthenticate with new token details
+                        redisTemplate.opsForValue().set("token:" + username, newAccessToken, 30, TimeUnit.MINUTES);
+                        redisTemplate.expire("refresh_token:" + username, 30, TimeUnit.MINUTES);
+
+                        // Authenticate user with new access token
                         authenticateUserWithNewToken(newAccessToken, userDetails, request);
+                    } else {
+                        // If no valid refresh token, user is inactive for more than 30 minutes
+                        // Proceed without reauthentication; tokens have expired
+                        SecurityContextHolder.clearContext();
                     }
                 }
             }
