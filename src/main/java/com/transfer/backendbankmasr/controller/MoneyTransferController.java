@@ -15,7 +15,7 @@ public class MoneyTransferController {
     @Autowired
     private TransactionService transService;
     @PostMapping("")
-    public ResponseEntity<TransferResponseDTO> transferMoney(@RequestBody TransferRequestDTO req) {
-        return ResponseEntity.ok(transService.transferMoney(req));
+    public TransferResponseDTO transferMoney(@RequestBody TransferRequestDTO req) {
+        return transService.transferMoney(req);
     }
 }
