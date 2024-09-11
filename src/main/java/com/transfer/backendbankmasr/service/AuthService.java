@@ -83,7 +83,7 @@ public class AuthService implements IAuthService {
             UserEntity savedUser= userRepository.save(user);
             String subject = "Registration Confirmation";
             String body = "Dear " + savedUser.getUsername() + ",\n\nThank you for registering with our service.";
-            emailService.sendConfirmationEmail(savedUser.getEmail(), subject, body);
+//            emailService.sendConfirmationEmail(savedUser.getEmail(), subject, body);
             RegisterUserResponse response = new RegisterUserResponse();
             response.setUserId(savedUser.getUserId());
             response.setUsername(savedUser.getUsername());
