@@ -1,4 +1,3 @@
-// Backend/src/main/java/com/transfer/backendbankmasr/service/FavoriteRecipientService.java
 package com.transfer.backendbankmasr.service;
 
 import com.transfer.backendbankmasr.dto.CreateFavoriteRecipientReq;
@@ -11,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,6 +26,15 @@ public class FavoriteRecipientService {
         UserEntity user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
+        // Check if the recipient already exists
+        Optional<FavoriteRecipientEntity> existingRecipient = favoriteRecipientRepository
+                .findByUser_UserIdAndRecipientAccountNumber(userId, req.getRecipientAccountNumber());
+
+        if (existingRecipient.isPresent()) {
+            throw new IllegalArgumentException("Recipient already exists in favorites.");
+        }
+
+        // Create a new favorite recipient if it does not exist
         FavoriteRecipientEntity favoriteRecipient = new FavoriteRecipientEntity();
         favoriteRecipient.setUser(user);
         favoriteRecipient.setRecipientName(req.getRecipientName());
@@ -42,7 +51,6 @@ public class FavoriteRecipientService {
     }
 
     public void removeFavoriteRecipient(Long favoriteId) {
-
         favoriteRecipientRepository.deleteById(favoriteId);
     }
 }
