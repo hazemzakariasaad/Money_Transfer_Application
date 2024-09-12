@@ -16,7 +16,7 @@ public class EmailService {
         message.setTo(toEmail);
         message.setSubject(subject);
         message.setText(body);
-        message.setFrom("bm_backend@outlook.com");
+        message.setFrom("bm__backend@outlook.com");
 
         mailSender.send(message);
     }
