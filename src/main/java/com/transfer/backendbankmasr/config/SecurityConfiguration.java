@@ -53,9 +53,9 @@ public class SecurityConfiguration {
         "/h2-console/**",
         "/actuator/**",
         "/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**", "/webjars/**",
-            "/users/**",
-            "/transfer",
-            "/transactions/**"
+//            "/users/**",
+//            "/transfer",
+//            "/transactions/**"
 //            "/**"
     };
     @Bean
