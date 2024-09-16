@@ -1,277 +1,40 @@
-2024-09-16 03:45:24 - o.h.validator.internal.util.Version - HV000001: Hibernate Validator 7.0.1.Final
-2024-09-16 03:45:24 - c.t.b.BackendBankmasrApplication - Starting BackendBankmasrApplication using Java 22.0.2 with PID 40492 (D:\Money_Transfer_Application11\target\classes started by hazem in D:\Money_Transfer_Application11)
-2024-09-16 03:45:24 - c.t.b.BackendBankmasrApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
-2024-09-16 03:45:24 - c.t.b.BackendBankmasrApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-16 03:45:26 - o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-2024-09-16 03:45:26 - o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-09-16 03:45:26 - o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 141 ms. Found 4 JPA repository interfaces.
-2024-09-16 03:45:26 - o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-2024-09-16 03:45:26 - o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2024-09-16 03:45:26 - o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.transfer.backendbankmasr.repository.AccountRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2024-09-16 03:45:26 - o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.transfer.backendbankmasr.repository.FavoriteRecipientRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2024-09-16 03:45:26 - o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.transfer.backendbankmasr.repository.TransactionRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2024-09-16 03:45:26 - o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.transfer.backendbankmasr.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2024-09-16 03:45:26 - o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
-2024-09-16 03:45:26 - o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'validationConfig' of type [com.transfer.backendbankmasr.config.ValidationConfig$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [methodValidationPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
-2024-09-16 03:45:26 - o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2024-09-16 03:45:26 - o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-16 03:45:26 - o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-16 03:45:26 - o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
-2024-09-16 03:45:26 - o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-16 03:45:26 - o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1984 ms
-2024-09-16 03:45:27 - o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-09-16 03:45:27 - org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-09-16 03:45:27 - o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2024-09-16 03:45:27 - o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-09-16 03:45:27 - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2024-09-16 03:45:30 - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@70f5f57d
-2024-09-16 03:45:30 - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2024-09-16 03:45:30 - org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-09-16 03:45:32 - o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-09-16 03:45:37 - o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-09-16 03:45:38 - c.t.b.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
-2024-09-16 03:45:38 - c.t.b.s.JwtAuthenticationFilter - Filter 'authenticationJwtTokenFilter' configured for use
-2024-09-16 03:45:38 - o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
-2024-09-16 03:45:38 - o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
-2024-09-16 03:45:38 - o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-09-16 03:45:39 - o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-16 03:45:39 - o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2024-09-16 03:45:39 - c.t.b.BackendBankmasrApplication - Started BackendBankmasrApplication in 16.247 seconds (process running for 17.504)
-2024-09-16 03:47:15 - o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-09-16 03:47:15 - o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-09-16 03:47:15 - o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
-2024-09-16 03:47:16 - c.t.b.service.UserDetailsServiceImpl - Attempting to find user by username/email: ydeeene@gmail.com
-2024-09-16 03:47:16 - c.t.b.service.UserDetailsServiceImpl - User found: ydeeene
-2024-09-16 03:47:32 - c.t.b.service.UserDetailsServiceImpl - Attempting to find user by username/email: ydeeene@gmail.com
-2024-09-16 03:47:33 - c.t.b.service.UserDetailsServiceImpl - User found: ydeeene
-2024-09-16 03:47:34 - c.t.b.controller.UserController - Fetching user by ID from authenticated context
-2024-09-16 03:47:35 - c.t.b.controller.UserController - Fetched user: com.transfer.backendbankmasr.dto.UserDTO@30b12a86
-2024-09-16 03:47:44 - c.t.b.service.UserDetailsServiceImpl - Attempting to find user by username/email: ydeeene@gmail.com
-2024-09-16 03:47:45 - c.t.b.service.UserDetailsServiceImpl - User found: ydeeene
-2024-09-16 03:47:46 - c.t.b.controller.UserController - Fetching user by ID from authenticated context
-2024-09-16 03:47:46 - c.t.b.controller.UserController - Fetched user: com.transfer.backendbankmasr.dto.UserDTO@6ed78c8
-2024-09-16 03:47:54 - c.t.b.service.UserDetailsServiceImpl - Attempting to find user by username/email: ydeeene@gmail.com
-2024-09-16 03:47:55 - c.t.b.service.UserDetailsServiceImpl - User found: ydeeene
-2024-09-16 03:47:56 - c.t.b.controller.UserController - Fetching user by ID from authenticated context
-2024-09-16 03:47:57 - c.t.b.controller.UserController - Fetched user: com.transfer.backendbankmasr.dto.UserDTO@493ae8e1
-2024-09-16 03:48:01 - c.t.b.service.UserDetailsServiceImpl - Attempting to find user by username/email: ydeeene@gmail.com
-2024-09-16 03:48:01 - c.t.b.service.UserDetailsServiceImpl - User found: ydeeene
-2024-09-16 03:48:02 - c.t.b.controller.UserController - Fetching user by ID from authenticated context
-2024-09-16 03:48:03 - c.t.b.controller.UserController - Fetched user: com.transfer.backendbankmasr.dto.UserDTO@6e62fc6e
-2024-09-16 03:57:29 - o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-09-16 03:57:29 - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2024-09-16 03:57:30 - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2024-09-16 03:57:36 - o.h.validator.internal.util.Version - HV000001: Hibernate Validator 7.0.1.Final
-2024-09-16 03:57:36 - c.t.b.BackendBankmasrApplication - Starting BackendBankmasrApplication using Java 22.0.2 with PID 39676 (D:\Money_Transfer_Application11\target\classes started by hazem in D:\Money_Transfer_Application11)
-2024-09-16 03:57:36 - c.t.b.BackendBankmasrApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
-2024-09-16 03:57:36 - c.t.b.BackendBankmasrApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-16 03:57:37 - o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-2024-09-16 03:57:37 - o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-09-16 03:57:37 - o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 116 ms. Found 4 JPA repository interfaces.
-2024-09-16 03:57:37 - o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-2024-09-16 03:57:37 - o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2024-09-16 03:57:37 - o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.transfer.backendbankmasr.repository.AccountRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2024-09-16 03:57:37 - o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.transfer.backendbankmasr.repository.FavoriteRecipientRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2024-09-16 03:57:37 - o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.transfer.backendbankmasr.repository.TransactionRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2024-09-16 03:57:37 - o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.transfer.backendbankmasr.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2024-09-16 03:57:37 - o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
-2024-09-16 03:57:37 - o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'validationConfig' of type [com.transfer.backendbankmasr.config.ValidationConfig$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [methodValidationPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
-2024-09-16 03:57:38 - o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2024-09-16 03:57:38 - o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-16 03:57:38 - o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-16 03:57:38 - o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
-2024-09-16 03:57:38 - o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-16 03:57:38 - o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1420 ms
-2024-09-16 03:57:38 - o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-09-16 03:57:38 - org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-09-16 03:57:38 - o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2024-09-16 03:57:38 - o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-09-16 03:57:39 - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2024-09-16 03:57:41 - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5819ee0f
-2024-09-16 03:57:41 - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2024-09-16 03:57:41 - org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-09-16 03:57:43 - o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-09-16 03:57:47 - o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-09-16 03:57:47 - c.t.b.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
-2024-09-16 03:57:47 - c.t.b.s.JwtAuthenticationFilter - Filter 'authenticationJwtTokenFilter' configured for use
-2024-09-16 03:57:48 - o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
-2024-09-16 03:57:48 - o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
-2024-09-16 03:57:48 - o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-09-16 03:57:49 - o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-16 03:57:49 - o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2024-09-16 03:57:49 - c.t.b.BackendBankmasrApplication - Started BackendBankmasrApplication in 13.853 seconds (process running for 14.693)
-2024-09-16 03:59:28 - o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-09-16 03:59:28 - o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-09-16 03:59:28 - o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2024-09-16 03:59:29 - c.t.b.service.UserDetailsServiceImpl - Attempting to find user by username/email: ydeeene@gmail.com
-2024-09-16 03:59:29 - c.t.b.service.UserDetailsServiceImpl - User found: ydeeene
-2024-09-16 03:59:40 - c.t.b.service.UserDetailsServiceImpl - Attempting to find user by username/email: ydeeene@gmail.com
-2024-09-16 03:59:41 - c.t.b.service.UserDetailsServiceImpl - User found: ydeeene
-2024-09-16 03:59:41 - c.t.b.controller.UserController - Fetching user by ID from authenticated context
-2024-09-16 03:59:42 - c.t.b.controller.UserController - Fetched user: com.transfer.backendbankmasr.dto.UserDTO@139c4764
-2024-09-16 03:59:44 - c.t.b.service.UserDetailsServiceImpl - Attempting to find user by username/email: ydeeene@gmail.com
-2024-09-16 03:59:44 - c.t.b.service.UserDetailsServiceImpl - User found: ydeeene
-2024-09-16 03:59:45 - c.t.b.controller.UserController - Fetching user by ID from authenticated context
-2024-09-16 03:59:45 - c.t.b.controller.UserController - Fetched user: com.transfer.backendbankmasr.dto.UserDTO@105b335e
-2024-09-16 03:59:53 - c.t.b.service.UserDetailsServiceImpl - Attempting to find user by username/email: ydeeene@gmail.com
-2024-09-16 03:59:54 - c.t.b.service.UserDetailsServiceImpl - User found: ydeeene
-2024-09-16 03:59:57 - c.t.b.service.UserDetailsServiceImpl - Attempting to find user by username/email: ydeeene@gmail.com
-2024-09-16 03:59:58 - c.t.b.service.UserDetailsServiceImpl - User found: ydeeene
-2024-09-16 04:53:52 - o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-09-16 04:53:52 - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2024-09-16 04:53:53 - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2024-09-16 16:03:05 - o.h.validator.internal.util.Version - HV000001: Hibernate Validator 7.0.1.Final
-2024-09-16 16:03:05 - c.t.b.BackendBankmasrApplication - Starting BackendBankmasrApplication using Java 22.0.2 with PID 32720 (D:\Money_Transfer_Application11\target\classes started by hazem in D:\Money_Transfer_Application11)
-2024-09-16 16:03:05 - c.t.b.BackendBankmasrApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
-2024-09-16 16:03:05 - c.t.b.BackendBankmasrApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-16 16:03:07 - o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-2024-09-16 16:03:07 - o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-09-16 16:03:07 - o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 109 ms. Found 4 JPA repository interfaces.
-2024-09-16 16:03:07 - o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-2024-09-16 16:03:07 - o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2024-09-16 16:03:07 - o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.transfer.backendbankmasr.repository.AccountRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2024-09-16 16:03:07 - o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.transfer.backendbankmasr.repository.FavoriteRecipientRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2024-09-16 16:03:07 - o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.transfer.backendbankmasr.repository.TransactionRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2024-09-16 16:03:07 - o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.transfer.backendbankmasr.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2024-09-16 16:03:07 - o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 5 ms. Found 0 Redis repository interfaces.
-2024-09-16 16:03:07 - o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'validationConfig' of type [com.transfer.backendbankmasr.config.ValidationConfig$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [methodValidationPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
-2024-09-16 16:03:07 - o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2024-09-16 16:03:07 - o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-16 16:03:07 - o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-16 16:03:07 - o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
-2024-09-16 16:03:07 - o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-16 16:03:07 - o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2161 ms
-2024-09-16 16:03:08 - o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-09-16 16:03:08 - org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-09-16 16:03:08 - o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2024-09-16 16:03:08 - o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-09-16 16:03:08 - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2024-09-16 16:03:10 - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@729c8def
-2024-09-16 16:03:10 - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2024-09-16 16:03:11 - org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-09-16 16:03:12 - o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-09-16 16:03:17 - o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-09-16 16:03:17 - c.t.b.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
-2024-09-16 16:03:17 - c.t.b.s.JwtAuthenticationFilter - Filter 'authenticationJwtTokenFilter' configured for use
-2024-09-16 16:03:17 - o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
-2024-09-16 16:03:17 - o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
-2024-09-16 16:03:17 - o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-09-16 16:03:18 - o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-16 16:03:18 - o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
-2024-09-16 16:03:18 - o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-09-16 16:03:18 - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2024-09-16 16:03:19 - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2024-09-16 16:03:19 - o.s.b.a.l.ConditionEvaluationReportLogger - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2024-09-16 16:03:19 - o.s.b.d.LoggingFailureAnalysisReporter - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Web server failed to start. Port 8080 was already in use.
-
-Action:
-
-Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
-
-2024-09-16 16:03:45 - o.h.validator.internal.util.Version - HV000001: Hibernate Validator 7.0.1.Final
-2024-09-16 16:03:45 - c.t.b.BackendBankmasrApplication - Starting BackendBankmasrApplication using Java 22.0.2 with PID 31144 (D:\Money_Transfer_Application11\target\classes started by hazem in D:\Money_Transfer_Application11)
-2024-09-16 16:03:45 - c.t.b.BackendBankmasrApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
-2024-09-16 16:03:45 - c.t.b.BackendBankmasrApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-16 16:03:46 - o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-2024-09-16 16:03:46 - o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-09-16 16:03:46 - o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 116 ms. Found 4 JPA repository interfaces.
-2024-09-16 16:03:46 - o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-2024-09-16 16:03:46 - o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2024-09-16 16:03:46 - o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.transfer.backendbankmasr.repository.AccountRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2024-09-16 16:03:46 - o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.transfer.backendbankmasr.repository.FavoriteRecipientRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2024-09-16 16:03:46 - o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.transfer.backendbankmasr.repository.TransactionRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2024-09-16 16:03:46 - o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.transfer.backendbankmasr.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2024-09-16 16:03:46 - o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
-2024-09-16 16:03:46 - o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'validationConfig' of type [com.transfer.backendbankmasr.config.ValidationConfig$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [methodValidationPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
-2024-09-16 16:03:46 - o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2024-09-16 16:03:46 - o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-16 16:03:46 - o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-16 16:03:46 - o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
-2024-09-16 16:03:47 - o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-16 16:03:47 - o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1281 ms
-2024-09-16 16:03:47 - o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-09-16 16:03:47 - org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-09-16 16:03:47 - o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2024-09-16 16:03:47 - o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-09-16 16:03:47 - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2024-09-16 16:03:49 - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@63062eea
-2024-09-16 16:03:49 - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2024-09-16 16:03:50 - org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-09-16 16:03:51 - o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-09-16 16:03:55 - o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-09-16 16:03:56 - c.t.b.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
-2024-09-16 16:03:56 - c.t.b.s.JwtAuthenticationFilter - Filter 'authenticationJwtTokenFilter' configured for use
-2024-09-16 16:03:56 - o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
-2024-09-16 16:03:56 - o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
-2024-09-16 16:03:56 - o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-09-16 16:03:57 - o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-16 16:03:57 - o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
-2024-09-16 16:03:57 - o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-09-16 16:03:57 - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2024-09-16 16:03:58 - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2024-09-16 16:03:58 - o.s.b.a.l.ConditionEvaluationReportLogger - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2024-09-16 16:03:58 - o.s.b.d.LoggingFailureAnalysisReporter - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Web server failed to start. Port 8080 was already in use.
-
-Action:
-
-Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
-
-2024-09-16 16:04:12 - o.h.validator.internal.util.Version - HV000001: Hibernate Validator 7.0.1.Final
-2024-09-16 16:04:12 - c.t.b.BackendBankmasrApplication - Starting BackendBankmasrApplication using Java 22.0.2 with PID 19272 (D:\Money_Transfer_Application11\target\classes started by hazem in D:\Money_Transfer_Application11)
-2024-09-16 16:04:12 - c.t.b.BackendBankmasrApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
-2024-09-16 16:04:12 - c.t.b.BackendBankmasrApplication - No active profile set, falling back to 1 default profile: "default"
-2024-09-16 16:04:13 - o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-2024-09-16 16:04:13 - o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-09-16 16:04:13 - o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 115 ms. Found 4 JPA repository interfaces.
-2024-09-16 16:04:13 - o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-2024-09-16 16:04:13 - o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2024-09-16 16:04:13 - o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.transfer.backendbankmasr.repository.AccountRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2024-09-16 16:04:13 - o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.transfer.backendbankmasr.repository.FavoriteRecipientRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2024-09-16 16:04:13 - o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.transfer.backendbankmasr.repository.TransactionRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2024-09-16 16:04:13 - o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.transfer.backendbankmasr.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2024-09-16 16:04:13 - o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 10 ms. Found 0 Redis repository interfaces.
-2024-09-16 16:04:13 - o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'validationConfig' of type [com.transfer.backendbankmasr.config.ValidationConfig$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [methodValidationPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
-2024-09-16 16:04:13 - o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2024-09-16 16:04:13 - o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-16 16:04:13 - o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-09-16 16:04:13 - o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
-2024-09-16 16:04:13 - o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2024-09-16 16:04:13 - o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1297 ms
-2024-09-16 16:04:14 - o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-09-16 16:04:14 - org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-09-16 16:04:14 - o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2024-09-16 16:04:14 - o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-09-16 16:04:14 - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2024-09-16 16:04:16 - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@768e40af
-2024-09-16 16:04:16 - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2024-09-16 16:04:17 - org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-09-16 16:04:18 - o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-09-16 16:04:22 - o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-09-16 16:04:23 - c.t.b.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
-2024-09-16 16:04:23 - c.t.b.s.JwtAuthenticationFilter - Filter 'authenticationJwtTokenFilter' configured for use
-2024-09-16 16:04:23 - o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
-2024-09-16 16:04:23 - o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
-2024-09-16 16:04:23 - o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-09-16 16:04:24 - o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2024-09-16 16:04:24 - o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2024-09-16 16:04:24 - c.t.b.BackendBankmasrApplication - Started BackendBankmasrApplication in 13.21 seconds (process running for 13.86)
+2024-09-16 14:28:52 - o.h.validator.internal.util.Version - HV000001: Hibernate Validator 7.0.1.Final
+2024-09-16 14:28:52 - c.t.backend.BackendApplication - Starting BackendApplication using Java 22.0.2 with PID 21428 (C:\Users\hazem\Downloads\Money_Transfer_Application-twoservice\Backend\target\classes started by hazem in C:\Users\hazem\Downloads\Money_Transfer_Application-twoservice)
+2024-09-16 14:28:52 - c.t.backend.BackendApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-16 14:28:53 - o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-16 14:28:53 - o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-16 14:28:53 - o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 129 ms. Found 4 JPA repository interfaces.
+2024-09-16 14:28:53 - o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-16 14:28:53 - o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-09-16 14:28:53 - o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.transfer.backend.repository.AccountRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-16 14:28:53 - o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.transfer.backend.repository.FavoriteRecipientRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-16 14:28:53 - o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.transfer.backend.repository.TransactionRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-16 14:28:53 - o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.transfer.backend.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-16 14:28:53 - o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+2024-09-16 14:28:53 - o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'validationConfig' of type [com.transfer.backend.config.ValidationConfig$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [methodValidationPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2024-09-16 14:28:54 - o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-09-16 14:28:54 - o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-16 14:28:54 - o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-16 14:28:54 - o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-09-16 14:28:54 - o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-16 14:28:54 - o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1549 ms
+2024-09-16 14:28:54 - o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-16 14:28:54 - org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-16 14:28:54 - o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-09-16 14:28:55 - o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-16 14:28:55 - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-09-16 14:28:57 - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@37a0fc8c
+2024-09-16 14:28:57 - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-09-16 14:28:57 - org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-09-16 14:28:59 - o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-16 14:29:03 - o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-16 14:29:04 - o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2024-09-16 14:29:04 - o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2024-09-16 14:29:04 - o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-16 14:29:05 - o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-16 14:29:05 - o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-09-16 14:29:05 - c.t.backend.BackendApplication - Started BackendApplication in 14.277 seconds (process running for 15.315)
+2024-09-16 16:01:18 - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=7m19s884ms395µs900ns).
+2024-09-16 16:04:08 - o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-16 16:04:08 - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-09-16 16:04:09 - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
