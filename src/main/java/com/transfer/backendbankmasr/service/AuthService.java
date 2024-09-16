@@ -113,8 +113,17 @@ public class AuthService implements IAuthService {
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
             UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
+            // Invalidate previous tokens in Redis before generating a new one
+            invalidatePreviousTokens(userDetails.getUsername());
+
             String jwt = jwtService.generateToken(userDetails);
-            Optional<UserEntity> user=userRepository.findUserByEmail(userDetails.getUsername());
+
+            Optional<UserEntity> user = userRepository.findUserByEmail(userDetails.getUsername());
+            if (!user.isPresent()) {
+                throw new ResourceNotFoundException("User not found");
+            }
+
             return LoginResponseDTO.builder()
                     .token(jwt)
                     .message("Login Successfully")
@@ -129,4 +138,11 @@ public class AuthService implements IAuthService {
             throw new AuthenticationFailureException("Authentication failed: " + e.getMessage(), e);
         }
     }
+
+    private void invalidatePreviousTokens(String username) {
+        // Delete any existing access and refresh tokens from Redis
+        redisTemplate.delete("token:" + username);
+        redisTemplate.delete("refresh_token:" + username);
+    }
+
 }

@@ -79,6 +79,8 @@ private int jwtRefreshExpirationMs;
     public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
         Optional<UserEntity> user = userRepository.findUserByEmail(userDetails.getUsername());
 
+        invalidatePreviousTokens(userDetails.getUsername());
+
         Long userId = user.get().getUserId();
         extraClaims.put("userId", userId);  // Add the user ID to the token claims
         String token = Jwts.builder()
@@ -131,6 +133,12 @@ private int jwtRefreshExpirationMs;
 
         return newAccessToken;
     }
+    private void invalidatePreviousTokens(String username) {
+        // Invalidate previous access and refresh tokens
+        redisTemplate.delete("token:" + username);
+        redisTemplate.delete("refresh_token:" + username);
+    }
+
     public boolean validateRefreshToken(String token, UserDetails userDetails) {
         final String username = userDetails.getUsername();
         String lastRefreshToken = redisTemplate.opsForValue().get("refresh_token:" + username);
