@@ -1,46 +1,66 @@
-# BackendBankMasr Application
+# Money Transfer Application
 
-BackendBankMasr is a secure and high-performance banking system designed to handle high volumes of transactions and user activities. The system prioritizes security, performance, and scalability, ensuring robust operation even under high load.
+## Overview
+This project is a **Money Transfer Application** that allows users to register, log in, and transfer money between accounts. It supports managing favorite recipients, retrieving transaction history, and caching for improved performance using **Redis**. The project is built with **Spring Boot** and follows the **MVC architecture** with a focus on clean code, SOLID principles, and efficient error handling.
 
 ## Features
+- **User Management**: 
+  - Registration and authentication with JWT.
+  - Custom exception handling for issues like incorrect credentials or email already in use.
+- **Money Transfer**: 
+  - Transfer funds between user accounts.
+  - Add and manage favorite recipients, ensuring no duplicates.
+- **Transaction History**: 
+  - Retrieve and view past transactions.
+- **Caching**: 
+  - Redis caching for enhanced performance, reducing the load on the database.
+- **Logging**: 
+  - Centralized logging to track and debug application behavior.
 
-- **Security**: Implemented using JWT for authentication with HTTPS support to ensure data is transmitted securely.
-- **Rate Limiting**: Configured at the gateway level to prevent service overload and enhance security against DDoS attacks.
-- **Single Device Session**: Ensures that users can only be logged in from one device at a time, enhancing security.
-- **High Performance**: Optimized with Redis caching to handle high volumes of data efficiently and maintain fast response times.
-- **Scalability**: Designed to scale seamlessly with increasing load, ensuring consistent performance.
-- **Email Verification**: Requires users to verify their email during the registration process, enhancing account security.
+## Project Structure
+The project follows the **Model-View-Controller (MVC)** pattern:
+- **Model**: Represents data entities like `UserEntity`, `TransactionEntity`.
+- **View**: REST controllers expose endpoints (e.g., `UserController`, `MoneyTransferController`).
+- **Controller**: Services like `AuthService` and `TransactionService` handle business logic.
+- **Repository**: JPA repositories manage database interactions.
 
-## Technology Stack
+## Tech Stack
+- **Java 17**
+- **Spring Boot**
+- **Hibernate/JPA**
+- **PostgreSQL** (Database)
+- **Redis** (Caching)
+- **JWT** (Authentication)
+- **Swagger** (API Documentation)
 
-- **Spring Boot**: For creating stand-alone, production-grade Spring-based applications easily.
-- **Spring Security**: For authentication and security.
-- **Redis**: Used for caching and session storage to enhance performance.
-- **PostgreSQL**: As the primary database for storing user and transaction data.
-- **JWT**: For handling authentication and ensuring only one active session per user.
-- **Spring Cloud Gateway**: For rate limiting and routing configurations.
+## Usage
 
-## Architecture
+- **Register a User**:  
+  Use the `/auth/register` endpoint to register a new user.
 
-The application uses a gateway-based architecture where all services are routed through a Spring Cloud Gateway, ensuring centralized management of rate limiting and routing. The backend is structured around core banking functionalities with separate services for handling user management and transaction processing.
+- **Login**:  
+  Authenticate using the `/auth/login` endpoint to obtain a JWT token.
 
-### Rate Limiting
+- **Money Transfer**:  
+  Use the `/transfer` endpoint to transfer money between accounts.
 
-Rate limiting is implemented at the API gateway to ensure equitable resource usage and protect against abuse and traffic spikes.
+- **Manage Favorite Recipients**:  
+  - Add recipients using the `/recipients/add` endpoint.  
+  - Retrieve favorite recipients via `/recipients/all`.
 
-### Security
+- **Transaction History**:  
+  View transaction history using the `/transactions/history` endpoint.
 
-Security is enforced through JWT, where tokens are generated and validated using a secret key. Tokens are stored in Redis, allowing for efficient validation and single-session enforcement by invalidating tokens on new logins.
+## Custom Exception Handling
 
-## Setup and Installation
+This project includes custom exception classes to handle various scenarios:
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/yourgithub/backendBankmasr.git
-### Navigate to the project directory:
-cd backendBankmasr
+- `EmailAlreadyUsedException`
+- `PasswordMismatchException`
+- `IncorrectCredentialsException`
+- `AuthenticationFailureException`
 
-### Install dependencies:
-mvn install
+## Logging
 
+The application uses **Spring Boot's logging** features to record actions and errors, improving debugging and traceability.
 
