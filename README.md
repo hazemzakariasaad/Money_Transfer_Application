@@ -1,66 +1,127 @@
-# Money Transfer Application
+# 💸 Money Transfer Application
 
 ## Overview
-This project is a **Money Transfer Application** that allows users to register, log in, and transfer money between accounts. It supports managing favorite recipients, retrieving transaction history, and caching for improved performance using **Redis**. The project is built with **Spring Boot** and follows the **MVC architecture** with a focus on clean code, SOLID principles, and efficient error handling.
+The **Money Transfer Application** is a secure and efficient platform that enables users to register, authenticate, and seamlessly transfer money between accounts. The system supports managing **favorite recipients**, **retrieving transaction history**, and **enhancing performance** using **Redis caching**.
 
-## Features
-- **User Management**: 
-  - Registration and authentication with JWT.
-  - Custom exception handling for issues like incorrect credentials or email already in use.
-- **Money Transfer**: 
-  - Transfer funds between user accounts.
-  - Add and manage favorite recipients, ensuring no duplicates.
-- **Transaction History**: 
-  - Retrieve and view past transactions.
-- **Caching**: 
-  - Redis caching for enhanced performance, reducing the load on the database.
-- **Logging**: 
-  - Centralized logging to track and debug application behavior.
+Built with **Spring Boot**, the application follows the **MVC architecture**, adhering to **clean code principles**, **SOLID design**, and **robust error handling** to ensure reliability and scalability.
 
-## Project Structure
-The project follows the **Model-View-Controller (MVC)** pattern:
-- **Model**: Represents data entities like `UserEntity`, `TransactionEntity`.
-- **View**: REST controllers expose endpoints (e.g., `UserController`, `MoneyTransferController`).
-- **Controller**: Services like `AuthService` and `TransactionService` handle business logic.
-- **Repository**: JPA repositories manage database interactions.
+---
 
-## Tech Stack
-- **Java 17**
-- **Spring Boot**
-- **Hibernate/JPA**
-- **PostgreSQL** (Database)
-- **Redis** (Caching)
-- **JWT** (Authentication)
-- **Swagger** (API Documentation)
+## ✨ Features
+### 🔐 User Management
+- User **registration and authentication** with **JWT-based security**.
+- Custom exception handling for issues like **incorrect credentials** or **email duplication**.
+- Secure password hashing for **enhanced protection**.
 
-## Usage
+### 💰 Money Transfers
+- Seamlessly transfer **funds** between user accounts.
+- **Prevent duplicate recipients** when managing favorite contacts.
+- Real-time **validation** to ensure secure transactions.
 
-- **Register a User**:  
-  Use the `/auth/register` endpoint to register a new user.
+### 📜 Transaction History
+- Retrieve and view **detailed transaction records**.
+- Optimize history retrieval with **efficient queries**.
 
-- **Login**:  
-  Authenticate using the `/auth/login` endpoint to obtain a JWT token.
+### ⚡ Caching with Redis
+- **Improve performance** and reduce database load by caching frequent queries.
+- Store and retrieve user data quickly for **faster response times**.
 
-- **Money Transfer**:  
-  Use the `/transfer` endpoint to transfer money between accounts.
+### 📊 Centralized Logging
+- Integrated **logging system** to track transactions and debug errors effectively.
+- Maintain logs for **security audits and performance monitoring**.
 
-- **Manage Favorite Recipients**:  
-  - Add recipients using the `/recipients/add` endpoint.  
-  - Retrieve favorite recipients via `/recipients/all`.
+---
 
-- **Transaction History**:  
-  View transaction history using the `/transactions/history` endpoint.
+## 🛠️ Tech Stack
+| Technology   | Purpose |
+|-------------|---------|
+| **Java 17**  | Core backend development |
+| **Spring Boot** | Application framework |
+| **Hibernate/JPA** | ORM for database interaction |
+| **PostgreSQL** | Database for storing users & transactions |
+| **Redis** | Caching for optimized performance |
+| **JWT (JSON Web Token)** | Secure authentication mechanism |
+| **Swagger** | API documentation & testing |
 
-## Custom Exception Handling
+---
 
-This project includes custom exception classes to handle various scenarios:
+## 📂 Project Structure
+The application follows a **Model-View-Controller (MVC) architecture**:
 
-- `EmailAlreadyUsedException`
-- `PasswordMismatchException`
-- `IncorrectCredentialsException`
-- `AuthenticationFailureException`
+```
+src/
+│── com.example.moneytransfer
+│   ├── controllers/      # REST Controllers (UserController, MoneyTransferController)
+│   ├── services/         # Business logic (AuthService, TransactionService)
+│   ├── models/           # Data entities (UserEntity, TransactionEntity)
+│   ├── repositories/     # JPA Repositories for database access
+│   ├── exceptions/       # Custom exception handling classes
+│   ├── config/           # Security & application configurations
+│   ├── logging/          # Centralized logging system
+│   ├── caching/          # Redis caching setup
+│   ├── utils/            # Utility functions for validation & processing
+```
 
-## Logging
+---
 
-The application uses **Spring Boot's logging** features to record actions and errors, improving debugging and traceability.
+## 🚀 Usage
+### 1️⃣ Register a New User
+Send a `POST` request to:
+```
+/auth/register
+```
+with:
+```json
+{
+  "email": "user@example.com",
+  "password": "securePassword123"
+}
+```
+
+### 2️⃣ Login & Get JWT Token
+Send a `POST` request to:
+```
+/auth/login
+```
+with valid credentials. A JWT token will be returned.
+
+### 3️⃣ Transfer Money
+Use:
+```
+/transfer
+```
+to send money between accounts.
+
+### 4️⃣ Manage Favorite Recipients
+- Add a recipient: `POST /recipients/add`
+- View saved recipients: `GET /recipients/all`
+
+### 5️⃣ View Transaction History
+Retrieve user transactions via:
+```
+/transactions/history
+```
+
+---
+
+## 🛡️ Custom Exception Handling
+The application provides **structured error handling** for common scenarios:
+
+| Exception | Description |
+|-----------|------------|
+| `EmailAlreadyUsedException` | Thrown when registering with an existing email. |
+| `PasswordMismatchException` | Raised when passwords do not match. |
+| `IncorrectCredentialsException` | Triggered when login credentials are invalid. |
+| `AuthenticationFailureException` | Occurs when authentication fails. |
+
+---
+
+## 📝 API Documentation
+Swagger is integrated for API testing and documentation.  
+Visit:
+```
+http://localhost:8080/swagger-ui/
+```
+to explore and test the API.
+
 
